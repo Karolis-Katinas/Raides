@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
 
 namespace raides
 {
@@ -11,36 +11,36 @@ namespace raides
         public static void Main(string[] args)
         {
             string filepath = @"C:\Users\grauk\Desktop\Objectinis programavimas\Raidės\raides.txt";
-            List<string> Lines = File.ReadAllLines(filepath).ToList();
+            List<string> lines = File.ReadAllLines(filepath).ToList();
             StringBuilder linija = new StringBuilder { };
-            List<string> Nlines = new List<string>{};
+            List<string> nlines = new List<string>{};
             
-            foreach (string Line in Lines)
+            foreach (string Line in lines)
             {
              
                 int i = 0;
-                foreach (char Symbol in Line)
+                foreach (char symbol in Line)
                 {
-                    if (Char.IsUpper(Symbol))
+                    if (Char.IsUpper(symbol))
                     {
-                        linija.Insert(i, char.ToLower(Symbol));
+                        linija.Insert(i, char.ToLower(symbol));
                     }
 
-                    else if (Char.IsLower(Symbol))
+                    else if (Char.IsLower(symbol))
                     {
-                        linija.Insert(i, char.ToUpper(Symbol));
+                        linija.Insert(i, char.ToUpper(symbol));
                     }
                     else
                     {
-                        linija.Insert(i, Symbol);
+                        linija.Insert(i, symbol);
                     }
                     i++;
                 }
-                Nlines.Add(linija.ToString());
+                nlines.Add(linija.ToString());
                 linija.Clear();
             }
             String filepath2 = @"C:\Users\grauk\Desktop\Objectinis programavimas\Raidės\RaidėsFormated.txt";
-            File.WriteAllLines(filepath2, Nlines);
+            File.WriteAllLines(filepath2, nlines);
 
         }
     }
