@@ -14,7 +14,7 @@ namespace raides
             List<string> Lines = File.ReadAllLines(filepath).ToList();
             StringBuilder linija = new StringBuilder { };
             List<string> Nlines = new List<string>{};
-
+            
             foreach (string Line in Lines)
             {
                 int i = 0;
