@@ -17,15 +17,16 @@ namespace raides
             
             foreach (string Line in Lines)
             {
+             
                 int i = 0;
                 foreach (char Symbol in Line)
                 {
-                    if ((Symbol >= 'A' && Symbol <= 'Z') || (Symbol == 'Ą') || (Symbol == 'Č') || (Symbol == 'Ę') || (Symbol == 'Ė') || (Symbol == 'Į') || (Symbol == 'Š') || (Symbol == 'Ų') || (Symbol == 'Ū') || (Symbol == 'Ž'))
+                    if (Char.IsUpper(Symbol))
                     {
                         linija.Insert(i, char.ToLower(Symbol));
                     }
 
-                    else if ((Symbol >= 'a' && Symbol <= 'z') || (Symbol == 'ą') || (Symbol == 'č') || (Symbol == 'ę') || (Symbol == 'ė') || (Symbol == 'į') || (Symbol == 'š') || (Symbol == 'ų') || (Symbol == 'ū') || (Symbol == 'ž'))
+                    else if (Char.IsLower(Symbol))
                     {
                         linija.Insert(i, char.ToUpper(Symbol));
                     }
