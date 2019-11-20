@@ -39,9 +39,9 @@ namespace raides
                 nlines.Add(linija.ToString());
                 linija.Clear();
             }
-            String filepath2 = @"C:\Users\grauk\Desktop\Objectinis programavimas\Raidės\RaidėsFormated.txt";
+            Console.WriteLine("Iveskite isvedamo failo kelia ir vieta");
+            string filepath2=Console.ReadLine();
             File.WriteAllLines(filepath2, nlines);
-
         }
     }
 }
