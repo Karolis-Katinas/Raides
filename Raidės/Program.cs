@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
 
 namespace raides
 {
@@ -10,37 +10,48 @@ namespace raides
     {
         public static void Main(string[] args)
         {
-            string filepath = @"C:\Users\grauk\Desktop\Objectinis programavimas\Raidės\raides.txt";
-            List<string> Lines = File.ReadAllLines(filepath).ToList();
-            StringBuilder linija = new StringBuilder { };
-            List<string> Nlines = new List<string>{};
+            List<string> lines = new List<string> { };
+            string filepath;
             
-            foreach (string Line in Lines)
+            do
             {
-                int i = 0;
-                foreach (char Symbol in Line)
+                Console.WriteLine("Iveskite faila, kuri norite konvertuoti");
+                filepath = Console.ReadLine();
+                if ((File.Exists(filepath))&&(filepath.EndsWith(".txt")))
                 {
-                    if ((Symbol >= 'A' && Symbol <= 'Z') || (Symbol == 'Ą') || (Symbol == 'Č') || (Symbol == 'Ę') || (Symbol == 'Ė') || (Symbol == 'Į') || (Symbol == 'Š') || (Symbol == 'Ų') || (Symbol == 'Ū') || (Symbol == 'Ž'))
+                    lines = File.ReadAllLines(filepath).ToList();
+                }
+                else Console.WriteLine("Failas neegzistuoja!");
+            } while (!(File.Exists(filepath)&&(filepath.EndsWith(".txt"))));
+
+            List<string> nlines = new List<string> { };
+            StringBuilder linija = new StringBuilder { };
+            foreach (string Line in lines)
+            {
+             
+                int i = 0;
+                foreach (char symbol in Line)
+                {
+                    if (Char.IsUpper(symbol))
                     {
-                        linija.Insert(i, char.ToLower(Symbol));
+                        linija.Insert(i, char.ToLower(symbol));
                     }
 
-                    else if ((Symbol >= 'a' && Symbol <= 'z') || (Symbol == 'ą') || (Symbol == 'č') || (Symbol == 'ę') || (Symbol == 'ė') || (Symbol == 'į') || (Symbol == 'š') || (Symbol == 'ų') || (Symbol == 'ū') || (Symbol == 'ž'))
+                    else if (Char.IsLower(symbol))
                     {
-                        linija.Insert(i, char.ToUpper(Symbol));
+                        linija.Insert(i, char.ToUpper(symbol));
                     }
                     else
                     {
-                        linija.Insert(i, Symbol);
+                        linija.Insert(i, symbol);
                     }
                     i++;
                 }
-                Nlines.Add(linija.ToString());
+                nlines.Add(linija.ToString());
                 linija.Clear();
             }
-            String filepath2 = @"C:\Users\grauk\Desktop\Objectinis programavimas\Raidės\RaidėsFormated.txt";
-            File.WriteAllLines(filepath2, Nlines);
-
+            string filepath2 = filepath.Remove(filepath.Length-4, 4) + "_converted.txt";
+            File.WriteAllLines(filepath2, nlines);
         }
     }
 }
