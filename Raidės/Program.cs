@@ -10,11 +10,22 @@ namespace raides
     {
         public static void Main(string[] args)
         {
-            string filepath = @"C:\Users\grauk\Desktop\Objectinis programavimas\Raidės\raides.txt";
-            List<string> lines = File.ReadAllLines(filepath).ToList();
-            StringBuilder linija = new StringBuilder { };
-            List<string> nlines = new List<string>{};
+            List<string> lines = new List<string> { };
+            string filepath;
             
+            do
+            {
+                Console.WriteLine("Iveskite faila, kuri norite konvertuoti");
+                filepath = Console.ReadLine();
+                if ((File.Exists(filepath))&&(filepath.EndsWith(".txt")))
+                {
+                    lines = File.ReadAllLines(filepath).ToList();
+                }
+                else Console.WriteLine("Failas neegzistuoja!");
+            } while (!(File.Exists(filepath)&&(filepath.EndsWith(".txt"))));
+
+            List<string> nlines = new List<string> { };
+            StringBuilder linija = new StringBuilder { };
             foreach (string Line in lines)
             {
              
@@ -39,8 +50,7 @@ namespace raides
                 nlines.Add(linija.ToString());
                 linija.Clear();
             }
-            Console.WriteLine("Iveskite isvedamo failo kelia ir vieta");
-            string filepath2=Console.ReadLine();
+            string filepath2 = filepath.Remove(filepath.Length-4, 4) + "_converted.txt";
             File.WriteAllLines(filepath2, nlines);
         }
     }
