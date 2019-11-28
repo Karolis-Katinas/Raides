@@ -11,15 +11,9 @@ namespace raides
     {
         public static void Main(string[] args)
         {
-            Ivedimas i = new Ivedimas();
-            TextConverter n = new TextConverter();
-            Isvedimas s = new Isvedimas();
-            List<string> oldtext, newtext;
-            string path;
-            oldtext = i.ivesti();
-            newtext=n.ConvertText(oldtext);
-            path = i.GetPath();
-            s.isvedimas(path, newtext);
+            Ivedimas text1 = new Ivedimas();
+            List<string> newtext = TextCaseConverter.ConvertText(text1.ivesti());
+            Isvedimas.Output(text1.GetPath(), newtext);
         }
     }
 }

@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converter.cs" />
+    <Compile Include="TextCaseConverter.cs" />
     <Compile Include="Isvedimas.cs" />
     <Compile Include="Ivedimas.cs" />
     <Compile Include="Program.cs" />

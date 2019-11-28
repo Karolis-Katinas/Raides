@@ -13,19 +13,19 @@ namespace Raidės
         string path;
         public List<string> ivesti()
         {
-            List<string> lines = new List<string> { };
+            List<string> text = new List<string> { };
             do
             {
                 Console.WriteLine("Iveskite faila, kuri norite konvertuoti");
                 path = Console.ReadLine();
                 if ((File.Exists(path)) && (path.EndsWith(".txt")))
                 {
-                    lines = File.ReadAllLines(path).ToList();
+                    text = File.ReadAllLines(path).ToList();
                 }
                 else Console.WriteLine("Failas neegzistuoja!");
             } while (!(File.Exists(path) && (path.EndsWith(".txt"))));
 
-            return lines;
+            return text;
         }
         public string GetPath()
         {

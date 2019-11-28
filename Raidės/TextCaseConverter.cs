@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Raidės
 {
-    public class TextConverter
+    public class TextCaseConverter
     {
         List<string> text;
-        public TextConverter() { }
-        public TextConverter(List<string> ntext) { text = ntext; }
-        public List<string> ConvertText(List<string> txt)
+        public TextCaseConverter() { }
+        public TextCaseConverter(List<string> ntext) { text = ntext; }
+        public static List<string> ConvertText(List<string> txt)
         {
-            List<string> nlines = new List<string> { };
-            StringBuilder linija = new StringBuilder { };
+            List<string> newtext = new List<string> { };
+            StringBuilder strignbuilder = new StringBuilder { };
             foreach (string Line in txt)
             {
 
@@ -23,23 +23,23 @@ namespace Raidės
                 {
                     if (Char.IsUpper(symbol))
                     {
-                        linija.Insert(i, char.ToLower(symbol));
+                        strignbuilder.Insert(i, char.ToLower(symbol));
                     }
 
                     else if (Char.IsLower(symbol))
                     {
-                        linija.Insert(i, char.ToUpper(symbol));
+                        strignbuilder.Insert(i, char.ToUpper(symbol));
                     }
                     else
                     {
-                        linija.Insert(i, symbol);
+                        strignbuilder.Insert(i, symbol);
                     }
                     i++;
                 }
-                nlines.Add(linija.ToString());
-                linija.Clear();
+                newtext.Add(strignbuilder.ToString());
+                strignbuilder.Clear();
             }
-            return nlines;
+            return newtext;
         }
         public List<string> GetText()
         {

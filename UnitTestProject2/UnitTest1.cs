@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using raides;
 using Raidės;
 using System.Text;
+using System.IO;
+using System.Linq;
 
 namespace UnitTestProject2
 {
@@ -14,34 +16,42 @@ namespace UnitTestProject2
         [TestMethod]
         public void TestMethod1()
         {
-            List<string> l = new List<string>();
-            l.Add("sdgfop]kasod[kokkOIJčęįįęįčįęččęįčIJIJKOPK");
-            l.Add("8uhjnsdfjasfd[]'");
-            TextConverter t = new TextConverter(l);
-            StringBuilder sb = new StringBuilder();
-            foreach (string Line in t.GetText())
+            //Arrange
+            string path = (@"C:\Users\grauk\Desktop\Objectinis programavimas\Raides\raides.txt");
+            List<string> inputstring = new List<string> { };
+            List<string> outputstring = new List<string> { };
+
+            //Act
+            inputstring = File.ReadAllLines(path).ToList();
+            outputstring = TextCaseConverter.ConvertText(inputstring);
+
+            //assert
+            Assert.IsNotNull(inputstring);
+            Assert.IsNotNull(outputstring);
+
+            int i = 0;
+            foreach (string line in inputstring)
             {
-                int i = 0;
-                foreach (char symbol in Line)
+                int j = 0;
+                foreach (char symbol in line)
                 {
                     if (Char.IsUpper(symbol))
                     {
-                        sb.Insert(i, char.ToLower(symbol));
-                        Assert.IsTrue(sb[i]!=symbol);
+                        Assert.IsTrue(char.ToLower(symbol) == outputstring.ElementAt<string>(i).ElementAt<char>(j));
                     }
                     else if (Char.IsLower(symbol))
                     {
-                        sb.Insert(i, char.ToUpper(symbol));
-                        Assert.IsTrue(sb[i] != symbol);
+                        Assert.IsTrue(char.ToUpper(symbol) == outputstring.ElementAt<string>(i).ElementAt<char>(j));
                     }
                     else
                     {
-                        sb.Insert(i, symbol);
-                        Assert.IsTrue(sb[i] == symbol);
+                        Assert.IsTrue(symbol == outputstring.ElementAt<string>(i).ElementAt<char>(j));
                     }
-                    i++;
+                    j++;
                 }
+                i++;
             }
+
         }
     }
 }
