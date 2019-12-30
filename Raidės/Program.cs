@@ -6,7 +6,7 @@ using System.IO;
 
 namespace raides
 {
-    public class Program
+    public class  Program
     {
         public static void Main(string[] args)
         {
