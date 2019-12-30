@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,18 +7,15 @@ namespace Raidės
 {
     public class TextCaseConverter
     {
-        List<string> text;
+        string text;
         public TextCaseConverter() { }
-        public TextCaseConverter(List<string> ntext) { text = ntext; }
-        public static List<string> ConvertText(List<string> txt)
+        public TextCaseConverter(string ntext) { text = ntext; }
+        public static string Convert(string txt)
         {
-            List<string> newtext = new List<string> { };
+            string newtext;
             StringBuilder strignbuilder = new StringBuilder { };
-            foreach (string Line in txt)
-            {
-
                 int i = 0;
-                foreach (char symbol in Line)
+                foreach (char symbol in txt)
                 {
                     if (Char.IsUpper(symbol))
                     {
@@ -36,12 +32,10 @@ namespace Raidės
                     }
                     i++;
                 }
-                newtext.Add(strignbuilder.ToString());
-                strignbuilder.Clear();
-            }
+            newtext = strignbuilder.ToString();
             return newtext;
         }
-        public List<string> GetText()
+        public string GetText()
         {
             return text;
         }

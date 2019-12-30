@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +9,16 @@ namespace Raidės
 {
    public  class Ivedimas
     {
-        string path;
-        public List<string> ivesti()
+        string path, text;
+        public string ivesti()
         {
-            List<string> text = new List<string> { };
             do
             {
                 Console.WriteLine("Iveskite faila, kuri norite konvertuoti");
                 path = Console.ReadLine();
                 if ((File.Exists(path)) && (path.EndsWith(".txt")))
                 {
-                    text = File.ReadAllLines(path).ToList();
+                    text = File.ReadAllText(path);
                 }
                 else Console.WriteLine("Failas neegzistuoja!");
             } while (!(File.Exists(path) && (path.EndsWith(".txt"))));
